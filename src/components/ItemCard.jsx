@@ -26,7 +26,13 @@ export default function ItemCard({ item, category }) {
           alt={item.name}
           className="w-full h-full object-cover"
           onError={(e) => {
-            e.currentTarget.src = "/vite.svg";
+            const fallback =
+              category === "car"
+                ? "/assets/car-placeholder.svg"
+                : category === "bike"
+                ? "/assets/bike-placeholder.svg"
+                : "/assets/room-placeholder.svg";
+            e.currentTarget.src = fallback;
           }}
         />
         {user && (
