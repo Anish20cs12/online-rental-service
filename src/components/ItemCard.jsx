@@ -18,7 +18,7 @@ export default function ItemCard({ item, category }) {
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -4, scale: 1.02 }}
       transition={{ duration: 0.35 }}
-      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl max-w-[280px] mx-auto"
+      className="bg-white/80 backdrop-blur rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl max-w-[280px] mx-auto border border-white/40"
     >
       <div className="h-48 w-full overflow-hidden relative">
         <img

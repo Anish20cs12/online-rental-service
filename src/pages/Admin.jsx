@@ -20,9 +20,9 @@ export default function Admin() {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard - Bookings</h1>
+      <h1 className="text-3xl font-extrabold mb-4 bg-gradient-to-r from-purple-600 to-fuchsia-500 bg-clip-text text-transparent">Admin Dashboard - Bookings</h1>
       {bookings.length === 0 ? (
-        <p>No bookings yet.</p>
+        <div className="text-gray-600 bg-white/70 rounded-xl p-6 border border-gray-100">No bookings yet.</div>
       ) : (
         <table className="w-full border border-gray-300 bg-white rounded-lg overflow-hidden">
           <thead>

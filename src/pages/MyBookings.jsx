@@ -28,9 +28,9 @@ export default function MyBookings() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">My Bookings</h1>
+      <h1 className="text-3xl font-extrabold mb-2 bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">My Bookings</h1>
       {myBookings.length === 0 ? (
-        <p className="text-gray-600">No bookings yet.</p>
+        <div className="text-gray-600 bg-white/70 rounded-xl p-6 border border-gray-100">No bookings yet.</div>
       ) : (
         <div className="space-y-4">
           {myBookings.map((b) => (

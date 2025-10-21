@@ -28,9 +28,9 @@ export default function Favorites() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">My Favorites</h1>
+      <h1 className="text-3xl font-extrabold mb-2 bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent">My Favorites</h1>
       {items.length === 0 ? (
-        <p className="text-gray-600">No favorites yet.</p>
+        <div className="text-gray-600 bg-white/70 rounded-xl p-6 border border-gray-100">No favorites yet. Click the heart on any item to add.</div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           {items.map(({ item, category }) => (
