@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function ItemDetails() {
   const location = useLocation();
@@ -16,12 +17,17 @@ export default function ItemDetails() {
   }
 
   return (
-    <div className="min-h-screen py-10 bg-gray-100">
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow overflow-hidden">
+    <div className="min-h-screen py-10 bg-gradient-to-b from-gray-50 to-gray-100">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        className="max-w-4xl mx-auto bg-white rounded-xl shadow overflow-hidden"
+      >
         <img src={item.image} alt={item.name} className="w-full h-96 object-cover" />
         <div className="p-6">
-          <h1 className="text-3xl font-bold mb-2">{item.name}</h1>
-          <p className="text-gray-700 mb-4">Category: <span className="font-semibold">{category}</span></p>
+          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">{item.name}</h1>
+          <p className="text-gray-700 mb-1">Category: <span className="font-semibold">{category}</span></p>
           <p className="text-gray-700 mb-4">Price: <span className="font-semibold">₹{item.price} / day</span></p>
           <p className="text-gray-600 mb-6">{item.description}</p>
 
@@ -31,7 +37,7 @@ export default function ItemDetails() {
             <button onClick={() => navigate(-1)} className="border px-4 py-2 rounded">Back</button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

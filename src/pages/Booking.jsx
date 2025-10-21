@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { saveBooking, hasBookingOverlap } from "../services/storage";
 import { getCurrentUser } from "../services/auth";
+import { motion } from "framer-motion";
 
 export default function Booking() {
   const location = useLocation();
@@ -56,9 +57,16 @@ export default function Booking() {
   }
 
   return (
-    <div className="min-h-screen py-10">
-      <div className="max-w-md mx-auto bg-white p-6 rounded-xl shadow">
-        <h2 className="text-2xl font-semibold mb-4">Book {item.name}</h2>
+    <div className="min-h-screen py-10 bg-gradient-to-b from-gray-50 to-gray-100">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        className="max-w-md mx-auto bg-white p-6 rounded-xl shadow"
+      >
+        <h2 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+          Book {item.name}
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -86,9 +94,9 @@ export default function Booking() {
             <div className="text-sm text-gray-600">Days: <span className="font-semibold">{days}</span></div>
             <div className="text-lg font-bold">Total: ₹{item.price * days}</div>
           </div>
-          <button className="w-full bg-blue-600 text-white py-2 rounded">Confirm Booking</button>
+          <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded">Confirm Booking</button>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 }

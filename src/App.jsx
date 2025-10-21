@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/NavBar";
 import Home from "./pages/Home";
 import Cars from "./pages/Cars";
@@ -20,11 +21,20 @@ export default function App() {
     // seed a simple admin for demo: admin@a.com / admin
     ensureAdmin();
   }, []);
+  const location = useLocation();
   return (
     <div className="min-h-screen bg-gray-100 pt-16">
       <Navbar />
       <main className="py-8">
-        <Routes>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+          >
+            <Routes location={location}>
           <Route path="/" element={<Home />} />
 
           <Route path="/cars" element={<Cars />} />
@@ -78,9 +88,11 @@ export default function App() {
             }
           />
 
-          {/* fallback to home */}
-          <Route path="*" element={<Home />} />
-        </Routes>
+              {/* fallback to home */}
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );

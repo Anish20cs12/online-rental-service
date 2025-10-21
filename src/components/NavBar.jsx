@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { getCurrentUser, logout } from "../services/auth";
 import { motion } from "framer-motion";
 
@@ -49,15 +49,25 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center gap-6 text-sm font-medium">
-            <Link to="/cars" className="hover:text-yellow-300 transition-all">
-              Cars
-            </Link>
-            <Link to="/bikes" className="hover:text-yellow-300 transition-all">
-              Bikes
-            </Link>
-            <Link to="/rooms" className="hover:text-yellow-300 transition-all">
-              Rooms
-            </Link>
+            {[
+              { to: "/cars", label: "Cars" },
+              { to: "/bikes", label: "Bikes" },
+              { to: "/rooms", label: "Rooms" },
+            ].map((l) => (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                className={({ isActive }) =>
+                  `transition-all relative after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-yellow-300 after:transition-all ${
+                    isActive
+                      ? "text-yellow-300 after:w-full"
+                      : "hover:text-yellow-200 after:w-0 hover:after:w-full"
+                  }`
+                }
+              >
+                {l.label}
+              </NavLink>
+            ))}
           </div>
         </div>
 

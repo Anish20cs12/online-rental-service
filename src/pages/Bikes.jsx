@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import ItemCard from "../components/ItemCard";
 import { getBikes } from "../services/storage";
+import { motion } from "framer-motion";
 
 export default function Bikes() {
   const [bikes, setBikes] = useState([]);
@@ -26,7 +27,14 @@ export default function Bikes() {
   return (
     <div className="py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl font-semibold mb-6">Bikes</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-2xl font-semibold mb-6 bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent"
+        >
+          Bikes
+        </motion.h2>
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <input
             value={query}
