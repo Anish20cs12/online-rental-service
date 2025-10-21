@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getCurrentUser } from "../services/auth";
 import { Heart } from "lucide-react";
 import { isFavorite, toggleFavorite } from "../services/storage";
+import { motion } from "framer-motion";
 
 export default function ItemCard({ item, category }) {
   const user = getCurrentUser();
@@ -11,7 +12,13 @@ export default function ItemCard({ item, category }) {
   );
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-transform transform hover:-translate-y-1 duration-300 max-w-[280px] mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -4, scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl max-w-[280px] mx-auto"
+    >
       <div className="h-48 w-full overflow-hidden relative">
         <img
           src={item.image}
@@ -24,13 +31,18 @@ export default function ItemCard({ item, category }) {
         {user && (
           <button
             aria-label="favorite"
+            aria-pressed={fav}
             onClick={() => {
               toggleFavorite(user.email, item, category);
               setFav((v) => !v);
             }}
             className="absolute top-2 right-2 bg-white/80 rounded-full p-2 hover:bg-white"
           >
-            <Heart size={18} className={fav ? "fill-red-500 text-red-500" : "text-gray-700"} />
+            <Heart
+              size={18}
+              color={fav ? "#ef4444" : "#374151"}
+              fill={fav ? "#ef4444" : "none"}
+            />
           </button>
         )}
       </div>
@@ -51,6 +63,6 @@ export default function ItemCard({ item, category }) {
           <Link to="/login" className="text-red-500 font-semibold">Login to view</Link>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

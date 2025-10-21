@@ -13,7 +13,10 @@ export default function Favorites() {
     }
   }, [user]);
 
-  const items = useMemo(() => favorites.map((f) => ({ ...f.itemSnapshot, id: f.itemId })), [favorites]);
+  const items = useMemo(
+    () => favorites.map((f) => ({ item: { ...f.itemSnapshot, id: f.itemId }, category: f.category })),
+    [favorites]
+  );
 
   if (!user) {
     return (
@@ -30,8 +33,8 @@ export default function Favorites() {
         <p className="text-gray-600">No favorites yet.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
-          {items.map((it) => (
-            <ItemCard key={`${it.id}-${it.name}`} item={it} category={"car"} />
+          {items.map(({ item, category }) => (
+            <ItemCard key={`${category}-${item.id}-${item.name}`} item={item} category={category} />
           ))}
         </div>
       )}

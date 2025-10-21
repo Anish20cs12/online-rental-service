@@ -76,7 +76,7 @@ export default function Navbar() {
                 Favorites
               </Link>
 
-              {user.role === "admin" && (
+              {user && user.role === "admin" && (
                 <Link
                   to="/admin"
                   className="hover:text-yellow-300 transition-all"
