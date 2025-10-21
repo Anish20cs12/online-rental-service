@@ -14,16 +14,16 @@ export const cars = [
 ];
 
 export const bikes = [
-  { id: 1, name: "Royal Enfield Classic 350", price: 900, image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=1200&auto=format&fit=crop", description: "Thumping cruiser built for highways." },
-  { id: 2, name: "Yamaha FZ", price: 700, image: "https://images.unsplash.com/photo-1598976489092-bc3a3a5960d7?q=80&w=1200&auto=format&fit=crop", description: "Street naked with great handling." },
-  { id: 3, name: "KTM Duke 200", price: 950, image: "https://images.unsplash.com/photo-1609137144813-7d992e1f2c8e?q=80&w=1200&auto=format&fit=crop", description: "Sporty performance for city fun." },
-  { id: 4, name: "Bajaj Pulsar 150", price: 650, image: "https://images.unsplash.com/photo-1617817547282-5c9a1593b2e1?q=80&w=1200&auto=format&fit=crop", description: "Reliable and economical commuter." },
-  { id: 5, name: "TVS Apache RTR", price: 700, image: "https://images.unsplash.com/photo-1609053601302-bf2ba6d6f078?q=80&w=1200&auto=format&fit=crop", description: "Aggressive styling with punchy engine." },
-  { id: 6, name: "Honda Activa", price: 500, image: "https://images.unsplash.com/photo-1626337025563-7b3881b4250f?q=80&w=1200&auto=format&fit=crop", description: "Practical scooter for errands." },
-  { id: 7, name: "Suzuki Gixxer", price: 720, image: "https://images.unsplash.com/photo-1603481588273-0c44105b9d80?q=80&w=1200&auto=format&fit=crop", description: "Refined 150cc with style." },
-  { id: 8, name: "Hero Splendor", price: 450, image: "https://images.unsplash.com/photo-1572986330060-1c2f9de6ec26?q=80&w=1200&auto=format&fit=crop", description: "Trusted, fuel-efficient workhorse." },
-  { id: 9, name: "Yamaha MT-15", price: 1000, image: "https://images.unsplash.com/photo-1623073164644-468f7311ca5e?q=80&w=1200&auto=format&fit=crop", description: "Sharp design, torquey engine." },
-  { id: 10, name: "Jawa 42", price: 880, image: "https://images.unsplash.com/photo-1622194990071-9f1b2e2f1c49?q=80&w=1200&auto=format&fit=crop", description: "Retro-modern charm and sound." },
+  { id: 1, name: "Royal Enfield Classic 350", price: 900, image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=1200&auto=format&fit=crop", description: "Thumping cruiser built for highways.", rating: 4.7, spec: "350cc" },
+  { id: 2, name: "Yamaha FZ", price: 700, image: "https://images.unsplash.com/photo-1598976489092-bc3a3a5960d7?q=80&w=1200&auto=format&fit=crop", description: "Street naked with great handling.", rating: 4.4, spec: "150cc" },
+  { id: 3, name: "KTM Duke 200", price: 950, image: "https://images.unsplash.com/photo-1609137144813-7d992e1f2c8e?q=80&w=1200&auto=format&fit=crop", description: "Sporty performance for city fun.", rating: 4.6, spec: "200cc" },
+  { id: 4, name: "Bajaj Pulsar 150", price: 650, image: "https://images.unsplash.com/photo-1617817547282-5c9a1593b2e1?q=80&w=1200&auto=format&fit=crop", description: "Reliable and economical commuter.", rating: 4.3, spec: "150cc" },
+  { id: 5, name: "TVS Apache RTR", price: 700, image: "https://images.unsplash.com/photo-1609053601302-bf2ba6d6f078?q=80&w=1200&auto=format&fit=crop", description: "Aggressive styling with punchy engine.", rating: 4.5, spec: "160cc" },
+  { id: 6, name: "Honda Activa", price: 500, image: "https://images.unsplash.com/photo-1626337025563-7b3881b4250f?q=80&w=1200&auto=format&fit=crop", description: "Practical scooter for errands.", rating: 4.2, spec: "110cc" },
+  { id: 7, name: "Suzuki Gixxer", price: 720, image: "https://images.unsplash.com/photo-1603481588273-0c44105b9d80?q=80&w=1200&auto=format&fit=crop", description: "Refined 150cc with style.", rating: 4.4, spec: "150cc" },
+  { id: 8, name: "Hero Splendor", price: 450, image: "https://images.unsplash.com/photo-1572986330060-1c2f9de6ec26?q=80&w=1200&auto=format&fit=crop", description: "Trusted, fuel-efficient workhorse.", rating: 4.1, spec: "100cc" },
+  { id: 9, name: "Yamaha MT-15", price: 1000, image: "https://images.unsplash.com/photo-1623073164644-468f7311ca5e?q=80&w=1200&auto=format&fit=crop", description: "Sharp design, torquey engine.", rating: 4.6, spec: "155cc" },
+  { id: 10, name: "Jawa 42", price: 880, image: "https://images.unsplash.com/photo-1622194990071-9f1b2e2f1c49?q=80&w=1200&auto=format&fit=crop", description: "Retro-modern charm and sound.", rating: 4.5, spec: "293cc" },
 ];
 
 export const rooms = [

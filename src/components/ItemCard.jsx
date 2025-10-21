@@ -71,11 +71,22 @@ export default function ItemCard({ item, category }) {
       </div>
 
       <div className="p-4 text-center">
-        <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+        <div className="flex items-center justify-center gap-2">
+          <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+          {category === "bike" && (
+            <span className="flex items-center gap-1 text-amber-500 text-sm" aria-label={`Rating ${item.rating ?? 4.5}`}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" className="inline-block"><path d="M12 .587l3.668 7.568L24 9.748l-6 5.854 1.417 8.264L12 19.771 4.583 23.866 6 15.602 0 9.748l8.332-1.593z"/></svg>
+              <span className="text-gray-700">{(item.rating ?? 4.5).toFixed(1)}</span>
+            </span>
+          )}
+        </div>
         <div className="flex items-center justify-center gap-2 mb-2">
           <span className="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600">₹{item.price} <span className="text-gray-500 text-xs">/ day</span></span>
           <span className="text-[10px] uppercase tracking-wide bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full">{category}</span>
         </div>
+        {category === "bike" && item.spec && (
+          <div className="text-xs text-gray-500 mb-2">{item.spec}</div>
+        )}
 
         {user ? (
           <Link
@@ -86,7 +97,12 @@ export default function ItemCard({ item, category }) {
             View Details
           </Link>
         ) : (
-          <Link to="/login" className="text-red-500 font-semibold">Login to view</Link>
+          <Link
+            to="/login"
+            className="block w-full bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg shadow mt-2"
+          >
+            Book Now
+          </Link>
         )}
       </div>
     </motion.div>
