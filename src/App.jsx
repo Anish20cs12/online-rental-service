@@ -23,7 +23,7 @@ export default function App() {
   }, []);
   const location = useLocation();
   return (
-    <div className="min-h-screen bg-gray-100 pt-16">
+    <div className="min-h-screen bg-gray-100 pt-16 bg-animated-blobs">
       <Navbar />
       <main className="py-8">
         <AnimatePresence mode="wait">

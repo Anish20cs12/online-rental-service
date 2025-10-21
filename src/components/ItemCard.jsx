@@ -13,10 +13,11 @@ export default function ItemCard({ item, category }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -4, scale: 1.02 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.35 }}
       className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl max-w-[280px] mx-auto"
     >
       <div className="h-48 w-full overflow-hidden relative">
@@ -38,11 +39,18 @@ export default function ItemCard({ item, category }) {
             }}
             className="absolute top-2 right-2 bg-white/80 rounded-full p-2 hover:bg-white"
           >
-            <Heart
-              size={18}
-              color={fav ? "#ef4444" : "#374151"}
-              fill={fav ? "#ef4444" : "none"}
-            />
+            <motion.span
+              initial={false}
+              animate={{ scale: fav ? 1.2 : 1 }}
+              transition={{ type: "spring", stiffness: 500, damping: 20 }}
+              className="inline-flex"
+            >
+              <Heart
+                size={18}
+                color={fav ? "#ef4444" : "#374151"}
+                fill={fav ? "#ef4444" : "none"}
+              />
+            </motion.span>
           </button>
         )}
       </div>
