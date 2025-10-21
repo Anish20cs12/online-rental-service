@@ -53,6 +53,9 @@ export default function ItemCard({ item, category }) {
             </motion.span>
           </button>
         )}
+        {!user && (
+          <span className="absolute top-2 right-2 text-xs bg-white/80 rounded-full px-2 py-1 text-gray-700">Login to favorite</span>
+        )}
       </div>
 
       <div className="p-4 text-center">
