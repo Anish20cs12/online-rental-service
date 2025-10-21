@@ -53,7 +53,7 @@ export default function Rooms() {
           </select>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           {visibleRooms.map((r) => (
             <ItemCard key={r.id} item={r} category="room" />
           ))}

@@ -51,7 +51,7 @@ export default function Bikes() {
             <option value="price-desc">Price: High to Low</option>
           </select>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           {visibleBikes.map((b) => (
             <ItemCard key={b.id} item={b} category="bike" />
           ))}

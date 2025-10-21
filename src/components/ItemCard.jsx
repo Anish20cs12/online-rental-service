@@ -18,8 +18,14 @@ export default function ItemCard({ item, category }) {
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -4, scale: 1.02 }}
       transition={{ duration: 0.35 }}
-      className="bg-white/80 backdrop-blur rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl max-w-[280px] mx-auto border border-white/40"
+      className="relative bg-white/80 backdrop-blur rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl max-w-[320px] w-full border border-white/40"
     >
+      {/* gradient border ring */}
+      <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-transparent [background:conic-gradient(var(--tw-gradient-stops))] from-indigo-500 via-purple-500 to-pink-500 opacity-20"></span>
+
+      {/* decorative sheen */}
+      <span className="pointer-events-none absolute -top-16 -left-16 h-40 w-40 rounded-full bg-white/30 blur-2xl"></span>
+
       <div className="h-48 w-full overflow-hidden relative">
         <img
           src={item.image}
@@ -66,13 +72,16 @@ export default function ItemCard({ item, category }) {
 
       <div className="p-4 text-center">
         <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-        <p className="text-gray-600 mb-2">₹{item.price} / day</p>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600">₹{item.price} <span className="text-gray-500 text-xs">/ day</span></span>
+          <span className="text-[10px] uppercase tracking-wide bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded-full">{category}</span>
+        </div>
 
         {user ? (
           <Link
             to="/item/1" // we pass item via state below, route uses state not id lookup for simplicity
             state={{ item, category }}
-            className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow"
           >
             View Details
           </Link>
