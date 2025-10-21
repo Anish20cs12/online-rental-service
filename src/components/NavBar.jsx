@@ -69,6 +69,13 @@ export default function Navbar() {
                 Hi, <span className="font-semibold">{user.name}</span>
               </span>
 
+              <Link
+                to="/my-bookings"
+                className="hover:text-yellow-300 transition-all"
+              >
+                My Bookings
+              </Link>
+
               {user.role === "admin" && (
                 <Link
                   to="/admin"

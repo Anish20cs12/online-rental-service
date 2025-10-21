@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -10,9 +10,15 @@ import Booking from "./pages/Booking";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Admin from "./pages/Admin";
+import MyBookings from "./pages/MyBookings";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { ensureAdmin } from "./services/auth";
 
 export default function App() {
+  useEffect(() => {
+    // seed a simple admin for demo: admin@a.com / admin
+    ensureAdmin();
+  }, []);
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
@@ -37,6 +43,15 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Booking />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/my-bookings"
+            element={
+              <ProtectedRoute>
+                <MyBookings />
               </ProtectedRoute>
             }
           />

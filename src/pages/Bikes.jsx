@@ -1,17 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ItemCard from "../components/ItemCard";
 import { getBikes } from "../services/storage";
 
 export default function Bikes() {
   const [bikes, setBikes] = useState([]);
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState("price-asc");
   useEffect(() => setBikes(getBikes()), []);
+
+  const visibleBikes = useMemo(() => {
+    let list = [...bikes];
+    const q = query.trim().toLowerCase();
+    if (q) {
+      list = list.filter(
+        (b) =>
+          b.name.toLowerCase().includes(q) ||
+          (b.description || "").toLowerCase().includes(q)
+      );
+    }
+    if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
+    if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
+    return list;
+  }, [bikes, query, sort]);
 
   return (
     <div className="py-8">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-2xl font-semibold mb-6">Bikes</h2>
+        <div className="flex flex-col sm:flex-row gap-3 mb-6">
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search by name..."
+            className="flex-1 border rounded px-3 py-2"
+          />
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="border rounded px-3 py-2 w-full sm:w-48"
+          >
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
-          {bikes.map((b) => <ItemCard key={b.id} item={b} category="bike" />)}
+          {visibleBikes.map((b) => (
+            <ItemCard key={b.id} item={b} category="bike" />
+          ))}
         </div>
       </div>
     </div>
