@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { saveBooking } from "../services/storage";
+import { saveBooking, hasBookingOverlap } from "../services/storage";
 import { getCurrentUser } from "../services/auth";
 
 export default function Booking() {
@@ -27,6 +27,14 @@ export default function Booking() {
     e.preventDefault();
     if (!startDate || !endDate) {
       alert("Please select start and end dates.");
+      return;
+    }
+    if (new Date(endDate) < new Date(startDate)) {
+      alert("End date must be on or after start date.");
+      return;
+    }
+    if (hasBookingOverlap(item.id, startDate, endDate)) {
+      alert("Selected dates are not available for this item. Please choose different dates.");
       return;
     }
     const booking = {

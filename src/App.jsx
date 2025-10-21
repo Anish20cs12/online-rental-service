@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Admin from "./pages/Admin";
 import MyBookings from "./pages/MyBookings";
+import Favorites from "./pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ensureAdmin } from "./services/auth";
 
@@ -20,7 +21,7 @@ export default function App() {
     ensureAdmin();
   }, []);
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 pt-16">
       <Navbar />
       <main className="py-8">
         <Routes>
@@ -52,6 +53,15 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <MyBookings />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <Favorites />
               </ProtectedRoute>
             }
           />

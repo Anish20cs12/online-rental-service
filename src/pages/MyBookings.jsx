@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { getBookings } from "../services/storage";
+import { getBookings, updateBookingStatus } from "../services/storage";
 import { getCurrentUser } from "../services/auth";
 
 export default function MyBookings() {
@@ -43,8 +43,22 @@ export default function MyBookings() {
                 <div className="text-sm text-gray-600">
                   {b.type} • {b.startDate} → {b.endDate} • {b.days} day(s)
                 </div>
+                <div className="text-xs mt-1"><span className={`px-2 py-0.5 rounded ${b.status === 'confirmed' ? 'bg-green-100 text-green-700' : b.status === 'cancelled' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>{b.status}</span></div>
               </div>
-              <div className="mt-2 sm:mt-0 font-bold">₹{b.total}</div>
+              <div className="mt-2 sm:mt-0 flex items-center gap-3">
+                <div className="font-bold">₹{b.total}</div>
+                {b.status !== "cancelled" && (
+                  <button
+                    onClick={() => {
+                      updateBookingStatus(b.id, "cancelled");
+                      setBookings((prev) => prev.map((x) => (x.id === b.id ? { ...x, status: "cancelled" } : x)));
+                    }}
+                    className="text-red-600 border border-red-300 rounded px-3 py-1 hover:bg-red-50"
+                  >
+                    Cancel
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>

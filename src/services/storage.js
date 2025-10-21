@@ -28,3 +28,72 @@ export function saveBooking(booking) {
 export function getBookings() {
   return JSON.parse(localStorage.getItem("bookings")) || [];
 }
+
+// Booking helpers
+function toDateOnly(dateStr) {
+  // Normalize to midnight local to compare date ranges accurately
+  const d = new Date(dateStr);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
+function rangesOverlap(aStartStr, aEndStr, bStartStr, bEndStr) {
+  const aStart = toDateOnly(aStartStr).getTime();
+  const aEnd = toDateOnly(aEndStr).getTime();
+  const bStart = toDateOnly(bStartStr).getTime();
+  const bEnd = toDateOnly(bEndStr).getTime();
+  return aStart <= bEnd && bStart <= aEnd;
+}
+
+export function hasBookingOverlap(itemId, startDate, endDate) {
+  const all = getBookings();
+  return all.some(
+    (b) =>
+      b.itemId === itemId &&
+      b.status !== "cancelled" &&
+      rangesOverlap(startDate, endDate, b.startDate, b.endDate)
+  );
+}
+
+export function updateBookingStatus(bookingId, status) {
+  const all = getBookings();
+  const next = all.map((b) => (b.id === bookingId ? { ...b, status } : b));
+  localStorage.setItem("bookings", JSON.stringify(next));
+  return next.find((b) => b.id === bookingId);
+}
+
+// Favorites per-user (localStorage key: favorites_<email>)
+function favoritesKey(email) {
+  return `favorites_${email}`;
+}
+
+export function getFavorites(email) {
+  if (!email) return [];
+  return JSON.parse(localStorage.getItem(favoritesKey(email))) || [];
+}
+
+export function isFavorite(email, itemId, category) {
+  const list = getFavorites(email);
+  return list.some((f) => f.itemId === itemId && f.category === category);
+}
+
+export function toggleFavorite(email, item, category) {
+  if (!email) return [];
+  const key = favoritesKey(email);
+  const list = JSON.parse(localStorage.getItem(key)) || [];
+  const exists = list.find((f) => f.itemId === item.id && f.category === category);
+  let next;
+  if (exists) {
+    next = list.filter((f) => !(f.itemId === item.id && f.category === category));
+  } else {
+    next = [
+      ...list,
+      {
+        itemId: item.id,
+        category,
+        itemSnapshot: { id: item.id, name: item.name, price: item.price, image: item.image, description: item.description },
+      },
+    ];
+  }
+  localStorage.setItem(key, JSON.stringify(next));
+  return next;
+}

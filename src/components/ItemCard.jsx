@@ -1,14 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../services/auth";
+import { Heart } from "lucide-react";
+import { isFavorite, toggleFavorite } from "../services/storage";
 
 export default function ItemCard({ item, category }) {
   const user = getCurrentUser();
+  const [fav, setFav] = React.useState(() =>
+    user ? isFavorite(user.email, item.id, category) : false
+  );
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-transform transform hover:-translate-y-1 duration-300 max-w-[280px] mx-auto">
-      <div className="h-48 w-full overflow-hidden">
-        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+      <div className="h-48 w-full overflow-hidden relative">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = "/vite.svg";
+          }}
+        />
+        {user && (
+          <button
+            aria-label="favorite"
+            onClick={() => {
+              toggleFavorite(user.email, item, category);
+              setFav((v) => !v);
+            }}
+            className="absolute top-2 right-2 bg-white/80 rounded-full p-2 hover:bg-white"
+          >
+            <Heart size={18} className={fav ? "fill-red-500 text-red-500" : "text-gray-700"} />
+          </button>
+        )}
       </div>
 
       <div className="p-4 text-center">
