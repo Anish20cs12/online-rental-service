@@ -4,7 +4,8 @@ import { Car, Bike, Bed, Search } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Assuming you create this file in a components directory:
-import Header from"..//components/Header.jsx";
+// Remove the extra header to avoid double nav and simplify UI
+// (Navbar is already fixed and animated)
 import CategoryCard from"..//components/CategoryCard.jsx";
 
 // Centralized Data Source for Categories
@@ -42,8 +43,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50">
       
-      {/* 1. Header Component */}
-      <Header handleLogout={handleLogout} />
+      {/* Top spacing to account for fixed Navbar height */}
 
       {/* Main content with increased top padding for the fixed header */}
       <main className="flex-grow flex flex-col items-center justify-center text-center px-6 pt-32 pb-16 md:pt-40">

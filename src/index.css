@@ -6,7 +6,71 @@
 .container { max-width: 1100px; }
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fdfdfd;
+  /* Soft blended gradient with pastel/neon tones (lavender, cyan, sky blue, pink) */
+  background:
+    radial-gradient(1000px 500px at -10% -20%, rgba(196, 181, 253, 0.22), transparent 60%), /* lavender */
+    radial-gradient(900px 480px at 110% -10%, rgba(103, 232, 249, 0.18), transparent 60%),   /* cyan */
+    radial-gradient(1000px 560px at 50% 120%, rgba(56, 189, 248, 0.20), transparent 60%),   /* sky blue */
+    radial-gradient(800px 420px at 0% 120%, rgba(244, 114, 182, 0.14), transparent 60%),    /* pink */
+    #fefefe;
+}
+
+/* Floating animated blobs behind content */
+.bg-animated-blobs::before,
+.bg-animated-blobs::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0 auto auto 0;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle at 30% 30%, rgba(196, 181, 253, 0.35) 0%, transparent 60%);
+  filter: blur(60px);
+  animation: float1 14s ease-in-out infinite;
+}
+
+.bg-animated-blobs::after {
+  left: auto;
+  right: 0;
+  top: 25%;
+  background: radial-gradient(circle at 70% 70%, rgba(103, 232, 249, 0.32) 0%, transparent 60%);
+  animation: float2 16s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 20px) scale(1.05); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, -10px) scale(1.06); }
+}
+
+/* Subtle bokeh/blurred light spots layer */
+.bg-bokeh::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(120px 120px at 15% 25%, rgba(236, 72, 153, 0.08), transparent 60%),
+    radial-gradient(160px 160px at 85% 30%, rgba(56, 189, 248, 0.10), transparent 60%),
+    radial-gradient(140px 140px at 70% 80%, rgba(196, 181, 253, 0.08), transparent 60%),
+    radial-gradient(110px 110px at 30% 85%, rgba(103, 232, 249, 0.08), transparent 60%);
+  filter: blur(2px);
+  animation: bokehDrift 20s ease-in-out infinite alternate;
+}
+
+@keyframes bokehDrift {
+  0% { transform: translateY(0px) translateX(0px); }
+  100% { transform: translateY(-12px) translateX(10px); }
+}
+
+/* Gentle glow for headings to keep readability over dynamic backgrounds */
+.heading-glow {
+  text-shadow: 0 1px 12px rgba(59, 130, 246, 0.18), 0 1px 24px rgba(236, 72, 153, 0.12);
 }
 .container{
   max-block-size: 100vh;
