@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { getFavorites } from "../services/storage";
 import { getCurrentUser } from "../services/auth";
 import ItemCard from "../components/ItemCard";
+import EmptyState from "../components/EmptyState";
 
 export default function Favorites() {
   const user = getCurrentUser();
@@ -30,7 +31,7 @@ export default function Favorites() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-extrabold mb-2 bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent">My Favorites</h1>
       {items.length === 0 ? (
-        <div className="text-gray-600 bg-white/70 rounded-xl p-6 border border-gray-100">No favorites yet. Click the heart on any item to add.</div>
+        <EmptyState title="No favorites yet" description="Click the heart on any item to save it here." actionTo="/cars" actionLabel="Browse cars" />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           {items.map(({ item, category }) => (

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/NavBar";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Cars from "./pages/Cars";
 import Bikes from "./pages/Bikes";
@@ -23,6 +25,20 @@ export default function App() {
   }, []);
   const location = useLocation();
   const pathname = location.pathname;
+  useEffect(() => {
+    const routeTitle =
+      pathname === "/" ? "Home" :
+      pathname.startsWith("/cars") ? "Cars" :
+      pathname.startsWith("/bikes") ? "Bikes" :
+      pathname.startsWith("/rooms") ? "Rooms" :
+      pathname.startsWith("/favorites") ? "Favorites" :
+      pathname.startsWith("/my-bookings") ? "My Bookings" :
+      pathname.startsWith("/admin") ? "Admin" :
+      pathname.startsWith("/login") ? "Login" :
+      pathname.startsWith("/signup") ? "Signup" :
+      "CarRent";
+    document.title = `${routeTitle} · CarRent`;
+  }, [pathname]);
   const pageBg =
     pathname.startsWith("/cars")
       ? "bg-gradient-to-b from-indigo-50 to-blue-50"
@@ -40,9 +56,10 @@ export default function App() {
       ? "bg-gradient-to-b from-indigo-50 to-purple-50"
       : "bg-gradient-to-b from-gray-50 to-gray-100";
   return (
-    <div className="min-h-screen bg-gray-100 pt-16 bg-animated-blobs bg-bokeh">
+    <div id="top" className="min-h-screen flex flex-col bg-gray-100 pt-16 bg-animated-blobs bg-bokeh">
+      <ScrollToTop />
       <Navbar />
-      <main className={`py-8 ${pageBg}`}>
+      <main className={`py-8 flex-1 ${pageBg}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -111,6 +128,7 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
       </main>
+      <Footer />
     </div>
   );
 }

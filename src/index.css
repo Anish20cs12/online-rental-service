@@ -4,6 +4,7 @@
 
 /* small layout helper */
 .container { max-width: 1100px; }
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Poppins', sans-serif;
   /* Soft blended gradient with pastel/neon tones (lavender, cyan, sky blue, pink) */
@@ -85,4 +86,25 @@ body {
   background-color: #f7fafc; /* Tailwind gray-50 */
   background-image: radial-gradient(#d3d3d3 1px, transparent 0);
   background-size: 20px 20px;
+}
+
+/* Better focus visibility across the app */
+:focus-visible {
+  outline: 2px solid #6366f1; /* indigo-500 */
+  outline-offset: 2px;
+}
+
+/* Text selection color */
+::selection {
+  background: #e0e7ff; /* indigo-100 */
+  color: #111827; /* gray-900 */
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

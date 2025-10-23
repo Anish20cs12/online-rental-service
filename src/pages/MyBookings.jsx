@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { getBookings, updateBookingStatus } from "../services/storage";
 import { getCurrentUser } from "../services/auth";
+import EmptyState from "../components/EmptyState";
 
 export default function MyBookings() {
   const user = getCurrentUser();
@@ -30,7 +31,7 @@ export default function MyBookings() {
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-extrabold mb-2 bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">My Bookings</h1>
       {myBookings.length === 0 ? (
-        <div className="text-gray-600 bg-white/70 rounded-xl p-6 border border-gray-100">No bookings yet.</div>
+        <EmptyState title="No bookings yet" description="You haven't booked anything yet." actionTo="/cars" actionLabel="Browse cars" />
       ) : (
         <div className="space-y-4">
           {myBookings.map((b) => (

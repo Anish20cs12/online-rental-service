@@ -1,12 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Car, Bike, Bed, Search } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Assuming you create this file in a components directory:
 // Remove the extra header to avoid double nav and simplify UI
 // (Navbar is already fixed and animated)
-import CategoryCard from"..//components/CategoryCard.jsx";
+import CategoryCard from"../components/CategoryCard.jsx";
 
 // Centralized Data Source for Categories
 const categories = [
@@ -34,12 +33,6 @@ const categories = [
 ];
 
 export default function Home() {
-  function handleLogout() {
-    // This is generally better handled by a state management system or context
-    localStorage.removeItem("user");
-    window.location.href = "/login";
-  }
-
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50">
       
@@ -103,10 +96,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-white/70 backdrop-blur-md py-4 text-center text-gray-600 text-sm mt-auto">
-        © {new Date().getFullYear()} <span className="text-indigo-600 font-semibold">CarRent</span>. All rights reserved.
-      </footer>
     </div>
   );
 }
