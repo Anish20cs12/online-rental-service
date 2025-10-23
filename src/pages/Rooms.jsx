@@ -31,7 +31,7 @@ export default function Rooms() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-2xl font-semibold mb-6 bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent"
+          className="text-2xl font-semibold mb-6 bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent heading-glow"
         >
           Rooms
         </motion.h2>

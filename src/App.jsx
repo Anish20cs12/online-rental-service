@@ -40,7 +40,7 @@ export default function App() {
       ? "bg-gradient-to-b from-indigo-50 to-purple-50"
       : "bg-gradient-to-b from-gray-50 to-gray-100";
   return (
-    <div className="min-h-screen bg-gray-100 pt-16 bg-animated-blobs">
+    <div className="min-h-screen bg-gray-100 pt-16 bg-animated-blobs bg-bokeh">
       <Navbar />
       <main className={`py-8 ${pageBg}`}>
         <AnimatePresence mode="wait">

@@ -31,7 +31,7 @@ export default function Bikes() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="text-2xl font-semibold mb-6 bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent"
+          className="text-2xl font-semibold mb-6 bg-gradient-to-r from-pink-600 to-red-500 bg-clip-text text-transparent heading-glow"
         >
           Bikes
         </motion.h2>
