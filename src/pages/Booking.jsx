@@ -3,12 +3,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { saveBooking, hasBookingOverlap } from "../services/storage";
 import { getCurrentUser } from "../services/auth";
 import { motion } from "framer-motion";
+import { useToast } from "../components/Toast";
 
 export default function Booking() {
   const location = useLocation();
   const navigate = useNavigate();
   const { item, category } = location.state || {};
   const user = getCurrentUser();
+  const { notify } = useToast();
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -27,15 +29,15 @@ export default function Booking() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!startDate || !endDate) {
-      alert("Please select start and end dates.");
+      notify("Select start and end dates", "error");
       return;
     }
     if (new Date(endDate) < new Date(startDate)) {
-      alert("End date must be on or after start date.");
+      notify("End date must be on or after start date", "error");
       return;
     }
     if (hasBookingOverlap(item.id, startDate, endDate)) {
-      alert("Selected dates are not available for this item. Please choose different dates.");
+      notify("Dates unavailable for this item", "error");
       return;
     }
     const booking = {
@@ -52,7 +54,7 @@ export default function Booking() {
       status: "confirmed",
     };
     saveBooking(booking);
-    alert("Booking saved!");
+    notify("Booking confirmed!", "success");
     navigate("/my-bookings");
   }
 

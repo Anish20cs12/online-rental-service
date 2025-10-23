@@ -4,6 +4,7 @@ import { getCurrentUser } from "../services/auth";
 import { Heart } from "lucide-react";
 import { isFavorite, toggleFavorite } from "../services/storage";
 import { motion } from "framer-motion";
+import BlurImage from "./BlurImage";
 
 export default function ItemCard({ item, category }) {
   const user = getCurrentUser();
@@ -27,19 +28,17 @@ export default function ItemCard({ item, category }) {
       <span className="pointer-events-none absolute -top-16 -left-16 h-40 w-40 rounded-full bg-white/30 blur-2xl"></span>
 
       <div className="h-48 w-full overflow-hidden relative">
-        <img
+        <BlurImage
           src={item.image}
           alt={item.name}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            const fallback =
-              category === "car"
-                ? "/assets/car-placeholder.svg"
-                : category === "bike"
-                ? "/assets/bike-placeholder.svg"
-                : "/assets/room-placeholder.svg";
-            e.currentTarget.src = fallback;
-          }}
+          fallback={
+            category === "car"
+              ? "/assets/car-placeholder.svg"
+              : category === "bike"
+              ? "/assets/bike-placeholder.svg"
+              : "/assets/room-placeholder.svg"
+          }
+          className="h-48 w-full"
         />
         {user && (
           <button

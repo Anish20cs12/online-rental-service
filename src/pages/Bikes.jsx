@@ -35,7 +35,7 @@ export default function Bikes() {
         >
           Bikes
         </motion.h2>
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        <div className="sticky top-16 z-10 backdrop-blur bg-white/50 rounded-xl p-3 border mb-6 flex flex-col sm:flex-row gap-3">
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -50,6 +50,11 @@ export default function Bikes() {
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
           </select>
+          <div className="flex flex-wrap gap-2 text-xs">
+            {['150cc','200cc','Cruiser','Scooter'].map((t) => (
+              <button key={t} className="px-2 py-1 rounded-full border bg-white/70 hover:bg-white">{t}</button>
+            ))}
+          </div>
         </div>
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           {visibleBikes.map((b) => (

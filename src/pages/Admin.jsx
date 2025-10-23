@@ -25,7 +25,7 @@ export default function Admin() {
         <div className="text-gray-600 bg-white/70 rounded-xl p-6 border border-gray-100">No bookings yet.</div>
       ) : (
         <table className="w-full border border-gray-300 bg-white rounded-lg overflow-hidden">
-          <thead>
+          <thead className="sticky top-16 z-10">
             <tr className="bg-gray-100">
               <th className="border p-2">Customer</th>
               <th className="border p-2">Item</th>
@@ -38,8 +38,8 @@ export default function Admin() {
             </tr>
           </thead>
           <tbody>
-            {bookings.map((b) => (
-              <tr key={b.id} className="text-center">
+            {bookings.map((b, i) => (
+              <tr key={b.id} className={`text-center ${i % 2 ? 'bg-gray-50' : ''}`}>
                 <td className="border p-2">{b.name}</td>
                 <td className="border p-2">{b.itemName}</td>
                 <td className="border p-2">{b.type}</td>
