@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { addReview, getAverageRating, getReviews } from "../services/reviews";
 import { getCurrentUser } from "../services/auth";
+import StarRating from "../components/StarRating";
 
 export default function ItemDetails() {
   const location = useLocation();
@@ -37,8 +38,8 @@ export default function ItemDetails() {
           <p className="text-gray-700 mb-1">Category: <span className="font-semibold">{category}</span></p>
           <p className="text-gray-700 mb-4">Price: <span className="font-semibold">₹{item.price} / day</span></p>
           {avg && (
-            <div className="mb-4 text-amber-500 flex items-center gap-2">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .587l3.668 7.568L24 9.748l-6 5.854 1.417 8.264L12 19.771 4.583 23.866 6 15.602 0 9.748l8.332-1.593z"/></svg>
+            <div className="mb-4 flex items-center gap-2">
+              <StarRating value={Math.round(avg)} readOnly />
               <span className="text-gray-700">{avg.toFixed(1)} / 5</span>
             </div>
           )}
@@ -94,7 +95,7 @@ export default function ItemDetails() {
               className="space-y-3"
             >
               <label className="text-sm">Rating</label>
-              <input type="number" min="1" max="5" value={rating} onChange={(e) => setRating(Number(e.target.value))} className="w-full border rounded px-3 py-2" />
+              <StarRating value={rating} onChange={setRating} />
               <textarea placeholder="Share your experience" value={comment} onChange={(e) => setComment(e.target.value)} className="w-full border rounded px-3 py-2" />
               <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded">Submit</button>
             </form>
